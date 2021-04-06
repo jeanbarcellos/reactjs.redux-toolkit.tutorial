@@ -22,6 +22,16 @@ export const counterSlide = createSlice({
   }
 })
 
+// A função abaixo é chamada de thunk e nos permite executar lógica assíncrona.
+// Ele pode ser despachado como uma ação normal: `dispatch (incrementAsync (10))`.
+// Isso irá chamar o thunk com a função `dispatch` como o primeiro argumento.
+// O código assíncrono pode então ser executado e outras ações podem ser despachadas
+export const incrementAsync = amount => dispatch => {
+  setTimeout(() => {
+    dispatch(incrementByAmount(amount))
+  }, 1000)
+}
+
 export const { increment, decrement, incrementByAmount } = counterSlide.actions
 
 export default counterSlide.reducer

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { increment, decrement, incrementByAmount } from './counterSlice'
+import { increment, decrement, incrementByAmount, incrementAsync } from './counterSlice'
 import styles from './Counter.module.css'
 
 export const Counter = () => {
@@ -40,11 +40,16 @@ export const Counter = () => {
         />
         <button
           className={styles.button}
-          onClick={() =>
-            dispatch(incrementByAmount(Number(incrementAmount) || 0))
-          }
+          onClick={() =>dispatch(incrementByAmount(Number(incrementAmount) || 0))}
         >
           Add Amount
+        </button>
+
+        <button
+          className={styles.asyncButton}
+          onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}
+        >
+          Add Async
         </button>
       </div>
     </div>
