@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { increment, decrement } from './counterSlice'
+import { increment, decrement, incrementByAmount } from './counterSlice'
 import styles from './Counter.module.css'
 
 export const Counter = () => {
   const count = useSelector(state => state.counter.value)
   const dispatch = useDispatch()
+
+  const [incrementAmount, setIncrementAmount] = useState('2')
 
   return (
     <div>
@@ -26,6 +28,23 @@ export const Counter = () => {
           onClick={() => dispatch(decrement())}
         >
           Decrement
+        </button>
+      </div>
+
+      <div className={styles.row}>
+        <input
+          className={styles.textbox}
+          aria-label='Set increment amount'
+          value={incrementAmount}
+          onChange={e => setIncrementAmount(e.target.value)}
+        />
+        <button
+          className={styles.button}
+          onClick={() =>
+            dispatch(incrementByAmount(Number(incrementAmount) || 0))
+          }
+        >
+          Add Amount
         </button>
       </div>
     </div>
